@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Практичне завдання №2</title>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script>
+      fetch('data.json')
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.getElementById('container');
+
+          const groceryListTitle = document.createElement('h1');
+          groceryListTitle.textContent = 'Список покупок:';
+
+          const groceryListElement = document.createElement('ul');
+
+          data.shopping_list.forEach((listItem) => {
+            const listItemElement = document.createElement('li');
+            listItemElement.textContent = `Назва: ${listItem.name}, кількість: ${listItem.quantity}${listItem.unit}`;
+
+            groceryListElement.appendChild(listItemElement);
+          });
+
+          container.appendChild(groceryListTitle);
+          container.appendChild(groceryListElement);
+
+          const filterJSON = (data, key, value) => {
+            const filteredData = data.shopping_list.filter(
+              (listItem) => listItem[key] === value
+            );
+
+            return JSON.stringify(filteredData);
+          };
+
+          console.log('Purchased:');
+          console.log(filterJSON(data, 'purchased', true));
+
+          console.log('Хліб:');
+          console.log(filterJSON(data, 'name', 'Хліб'));
+
+          console.log('шт:');
+          console.log(filterJSON(data, 'unit', 'шт'));
+        });
+    </script>
+  </body>
+</html>

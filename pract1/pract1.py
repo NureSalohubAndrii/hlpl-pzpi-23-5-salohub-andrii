@@ -25,11 +25,18 @@ print(reverse_word("hello"))
 
 # Третє завдання
 def is_palindrom(word):
-    print(word == reverse_word(word))
+    return word == reverse_word(word)
 
 
-is_palindrom("eye")
-is_palindrom("0hello0")
+def is_string_palindron(string):
+    normalized_stiring = string.replace(" ", "")
+    return normalized_stiring == reverse_word(normalized_stiring)
+
+
+# print(is_palindrom("eye"))
+# print(is_palindrom("0hello0"))
+print(is_string_palindron("я несу гусеня"))
+# print("я несу гусеня".split(" "))
 
 # Четверте завдання
 nums = [2, 3, 5, 10, -2, 13]

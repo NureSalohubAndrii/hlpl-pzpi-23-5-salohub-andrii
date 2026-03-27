@@ -1,0 +1,74 @@
+{
+  "shopping_list": [
+    {
+      "id": 1,
+      "name": "Молоко",
+      "quantity": 2,
+      "unit": "л",
+      "purchased": false
+    },
+    {
+      "id": 2,
+      "name": "Хліб",
+      "quantity": 1,
+      "unit": "шт",
+      "purchased": true
+    },
+    {
+      "id": 3,
+      "name": "Яйця",
+      "quantity": 10,
+      "unit": "шт",
+      "purchased": false
+    },
+    {
+      "id": 4,
+      "name": "Сир",
+      "quantity": 200,
+      "unit": "г",
+      "purchased": true
+    },
+    {
+      "id": 5,
+      "name": "Куряче філе",
+      "quantity": 500,
+      "unit": "г",
+      "purchased": false
+    },
+    {
+      "id": 6,
+      "name": "Помідори",
+      "quantity": 3,
+      "unit": "шт",
+      "purchased": false
+    },
+    {
+      "id": 7,
+      "name": "Огірки",
+      "quantity": 2,
+      "unit": "шт",
+      "purchased": true
+    },
+    {
+      "id": 8,
+      "name": "Картопля",
+      "quantity": 1,
+      "unit": "кг",
+      "purchased": true
+    },
+    {
+      "id": 9,
+      "name": "Макарони",
+      "quantity": 1,
+      "unit": "уп",
+      "purchased": false
+    },
+    {
+      "id": 10,
+      "name": "Сік",
+      "quantity": 1.75,
+      "unit": "л",
+      "purchased": false
+    }
+  ]
+}
