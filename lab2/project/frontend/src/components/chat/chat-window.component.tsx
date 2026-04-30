@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { useChatStore } from '../stores/chat.store';
-import { useAuthStore } from '../stores/auth.store';
+import { useChatStore } from '../../stores/chat.store';
+import { useAuthStore } from '../../stores/auth.store';
 
 const ChatWindow = () => {
   const { messages } = useChatStore();
@@ -21,11 +21,12 @@ const ChatWindow = () => {
 
   return (
     <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-2 min-w-2xl">
-      {messages.map((msg) => {
-        const isOwn = msg.senderId === user?.id;
+      {messages.map((message) => {
+        const isOwn = message.senderId === user?.id;
+
         return (
           <div
-            key={msg.id}
+            key={message.id}
             className={`flex ${isOwn ? 'justify-end' : 'justify-start'}`}
           >
             <div
@@ -35,13 +36,13 @@ const ChatWindow = () => {
                   : 'bg-muted text-foreground rounded-bl-sm'
               }`}
             >
-              <p>{msg.content}</p>
+              <p>{message.content}</p>
               <p
                 className={`text-[10px] mt-1 ${
                   isOwn ? 'text-primary-foreground/60' : 'text-muted-foreground'
                 }`}
               >
-                {new Date(msg.createdAt).toLocaleTimeString('uk-UA', {
+                {new Date(message.createdAt).toLocaleTimeString('uk-UA', {
                   hour: '2-digit',
                   minute: '2-digit',
                 })}
