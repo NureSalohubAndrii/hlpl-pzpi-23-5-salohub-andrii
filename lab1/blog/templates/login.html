@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+
+{% if form.errors %}
+<div style="color: red; margin-bottom: 15px;">
+  Your username and password didn't match. Please try again.
+</div>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  <p><label>Login:</label> <input type="text" name="username" /></p>
+  <p><label>Password:</label> <input type="password" name="password" /></p>
+  <button type="submit">Login</button>
+</form>
+<p>Don't have an account? <a href="{% url 'signup' %}">Register here</a>.</p>
+{% endblock %}
+

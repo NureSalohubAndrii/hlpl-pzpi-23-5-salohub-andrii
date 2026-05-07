@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      button {
+        cursor: pointer;
+      }
+      .meta {
+        color: #666;
+        font-size: 0.9em;
+      }
+      .comments-section {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+      }
+      .comment {
+        background: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+      .header {
+        background: #f8f9fa;
+        padding: 10px; 
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      {% if user.is_authenticated %}
+        <span>
+          Logged in as: <strong>{{user.username}}</strong>
+        </span>
+
+        <form action="{%url 'logout' %}" method="post" style="display: inline; margin-left: 10px;">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      {% else %}
+      <a href="{% url 'login' %}">Login</a> |
+      <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
+    </header>
+    <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} {{article.title}} {% endblock %}
+
+{% block content %}
+<a href="{% url 'article_list' %}">← Back to List</a>
+
+<article>
+  <h1>{{ article.title }}</h1>
+  <div class="meta">
+    <span>Category: <strong>{{ article.category.name }}</strong></span> |
+    <span>Published: {{ article.pub_date|date:"F j, Y" }}</span>
+  </div>
+
+  <div class="content" style="margin-top: 20px">
+    {{ article.content|linebreaks }}
+  </div>
+</article>
+
+<section style="margin-top: 50px;">
+  <h3>Comments ({{ comments.count }})</h3>
+
+  {% if user.is_authenticated %}
+      <form method="post" style="margin-bottom: 30px;">
+          {% csrf_token %}
+          {{ form.text }}
+          <br>
+          <button type="submit" style="margin-top: 10px; padding: 8px 16px;">Post Comment</button>
+      </form>
+  {% else %}
+      <p><em>Please <a href="{% url 'login' %}">log in</a> to leave a comment.</em></p>
+  {% endif %}
+
+  {% for comment in comments %}
+      <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin-bottom: 10px; position: relative;">
+          <p style="margin: 0;"><strong>{{ comment.author.username }}</strong> 
+             <small style="color: #888;">- {{ comment.posted_at|timesince }} ago</small>
+          </p>
+          <p style="margin-top: 5px;">{{ comment.text }}</p>
+
+          {% if comment.author == user %}
+          <form action="{% url 'comment_delete' comment.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">
+              Delete
+            </button>
+          </form>
+          {% endif %}
+      </div>
+  {% empty %}
+      <p>No comments yet.</p>
+  {% endfor %}
+</section>
+{% endblock %}

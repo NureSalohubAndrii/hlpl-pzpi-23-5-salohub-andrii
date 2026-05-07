@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<h2>Create an account</h2>
+
+<form method="post">
+  {% csrf_token %} 
+
+  {% if form.non_field_errors %}
+    <div style="color: red; margin-bottom: 15px">
+      {% for error in form.non_field_errors %}
+        <p>
+          {{error}}
+        </p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form %}
+    <p>
+      {{field.label_tag}} <br>
+      {{field}}
+      {% if field.errors %}
+        <div style="color: red; font-size: 0.85em;">
+          {% for error in field.errors %}
+            <p style="margin: 2px, 0;">
+            {{error}}
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if field.help_text %}
+        <small style="color: #666; display: block;">{{ field.help_text|safe }}</small>
+      {% endif %}
+    </p>
+  {% endfor %}
+
+  <button type="submit">Register</button>
+</form>
+
+<p style="margin-top: 20px;">Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+{% endblock %}
