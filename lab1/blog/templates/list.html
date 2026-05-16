@@ -35,7 +35,7 @@
     <h2><a href="{% url 'article_details' article.id %}">{{ article.title }}</a></h2>
     <p>Category: {{ article.category.name }}</p>
     <p>{{ article.content|truncatewords:30 }}</p>
-    <small>Published at: {{ article.pub_date|date:"d.m.Y H:i" }}</small>
+    <small>Published at: {{ article.publish_date|date:"d.m.Y H:i" }}</small>
   </article>
   <hr />
   {% empty %}
